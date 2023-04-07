@@ -18,9 +18,7 @@ $con = mysqli_connect($host,$user,$pwd,$database,$porta);
     //fazendo ligação com o banco e mostrado a tabela de veiculos
 $db = mysqli_select_db($con, $database);
 
-$sql = "select * from veículo";
-
-$res = mysqli_query($con, $sql);
+$res = mysqli_query($con, 'select * from veículo');
 
 while ($linha = mysqli_fetch_array($res))
 {
@@ -30,20 +28,20 @@ while ($linha = mysqli_fetch_array($res))
 }
 
     //mostrando tabela de reservas 
-    $res = mysqli_query($linha, 'Select * from reserva');
+    $res = mysqli_query($con, 'Select * from reserva');
 
-    while ($row = mysqli_fetch_array($res)) 
+    while ($linha = mysqli_fetch_array($res)) 
     {
-        echo $linha['ID'],' ',$linha['MOTIVO'],' ',$linha['ID_COLABORADOR'],' ',$linha['ID_VEICULO'];
+        echo $linha['ID'],' ',$linha['MOTIVO'],' ',$linha['ID_COLABORADOR'],' ',$linha['ID_VEÍCULO'];
         echo '<br>';
     }
 
         //mostrndo tabela de colaboradores
-        $res = mysqli_query($linha, 'Select * from colabor');
+        $res = mysqli_query($con, 'Select * from colabor');
 
-        while ($row = mysqli_fetch_array($res)) 
+        while ($linha = mysqli_fetch_array($res)) 
         {
-            echo $linha['ID'],' ',$linha['NOME'],' ',$linha['NMR_CNH'];
+            echo $linha['ID'],' ',$linha['NOME'],' ',$linha['NR_CNH'];
             echo '<br>';
         }
 ?>
